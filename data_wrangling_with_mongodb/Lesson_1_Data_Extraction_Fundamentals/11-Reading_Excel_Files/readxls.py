@@ -97,5 +97,5 @@ def test():
     assert round(data['maxvalue'], 10) == round(18779.02551, 10)
 
 
-if __name__ == "__main__":    
+if __name__ == "__main__":
     test()
