@@ -1,7 +1,7 @@
 Udacity
 ---
 
-This repo contains my lectures and assignments of [Udacity](https://www.udacity.com/).
+This repo contains my lectures and assignments of all [Udacity](https://www.udacity.com/) courses.
 
 
 ## License
