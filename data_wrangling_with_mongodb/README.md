@@ -9,7 +9,7 @@ This repo contains lectures and assignments of [Data Wrangling with MongoDB - Ud
 
 | Lecture | Description |
 |--------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Lecture 1](./Lesson_1_Data_Extraction_Fundamentals) | Data Extraction Fundamentals - Working with CSV, Excel, JSON file |
+| [Lecture 1](./Lesson_1_Data_Extraction_Fundamentals)|[Problem Set 1](./Lesson_1_Problem_Set) | Data Extraction Fundamentals - Working with CSV, Excel, JSON file |
 
 
 ## License
