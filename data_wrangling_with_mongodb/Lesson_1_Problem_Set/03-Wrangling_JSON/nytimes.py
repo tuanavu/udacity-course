@@ -7,16 +7,21 @@ This exercise shows some important concepts that you should be aware about:
 - using offset when accessing web APIs
 
 To run this code locally you have to register at the NYTimes developer site 
-and get your own API key. You will be able to complete this exercise in our UI without doing so,
-as we have provided a sample result.
+and get your own API key. You will be able to complete this exercise in our UI
+without doing so, as we have provided a sample result. (See the file 
+'popular-viewed-1.json' from the tabs above.)
 
-Your task is to process the saved file that represents the most popular (by view count)
-articles in the last day, and return the following data:
-- list of dictionaries, where the dictionary key is "section" and value is "title"
-- list of URLs for all media entries with "format": "Standard Thumbnail"
+Your task is to modify the article_overview() function to process the saved
+file that represents the most popular articles (by view count) from the last
+day, and return a tuple of variables containing the following data:
+- labels: list of dictionaries, where the keys are the "section" values and
+  values are the "title" values for each of the retrieved articles.
+- urls: list of URLs for all 'media' entries with "format": "Standard Thumbnail"
 
-All your changes should be in the article_overview function.
-The rest of functions are provided for your convenience, if you want to access the API by yourself.
+All your changes should be in the article_overview() function. See the test() 
+function for examples of the elements of the output lists.
+The rest of functions are provided for your convenience, if you want to access
+the API by yourself.
 """
 import json
 import codecs
@@ -38,8 +43,16 @@ def article_overview(kind, period):
     data = get_from_file(kind, period)
     titles = []
     urls =[]
-    # YOUR CODE HERE
 
+    for article in data:
+        section = article["section"]
+        title = article["title"]
+        titles.append({section: title})
+        if "media" in article:
+            for m in article["media"]:
+                for mm in m["media-metadata"]:
+                    if mm["format"] == "Standard Thumbnail":
+                        urls.append(mm["url"])
     return (titles, urls)
 
 
@@ -71,7 +84,7 @@ def get_popular(url, kind, days, section="all-sections", offset=0):
         print "kind can be only one of viewed/shared/emailed"
         return False
 
-    url = URL_POPULAR + "most{0}/{1}/{2}.json".format(kind, section, days)
+    url += "most{0}/{1}/{2}.json".format(kind, section, days)
     data = query_site(url, "popular", offset)
 
     return data
@@ -83,7 +96,7 @@ def save_file(kind, period):
     data = get_popular(URL_POPULAR, "viewed", 1)
     num_results = data["num_results"]
     full_data = []
-    with codecs.open("popular-{0}-{1}-full.json".format(kind, period), encoding='utf-8', mode='w') as v:
+    with codecs.open("popular-{0}-{1}.json".format(kind, period), encoding='utf-8', mode='w') as v:
         for offset in range(0, num_results, 20):        
             data = get_popular(URL_POPULAR, kind, period, offset=offset)
             full_data += data["results"]
