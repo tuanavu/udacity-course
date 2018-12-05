@@ -41,14 +41,14 @@ draw_art()
 from twilio import rest
  
 # Your Account Sid and Auth Token from twilio.com/user/account
-account_sid = "ACb5759855970c9efe63e670e417da294c"
-auth_token  = "176583c110385a342dd15305c05a627c"
+account_sid = ""
+auth_token  = ""
 client = rest.TwilioRestClient(account_sid, auth_token)
  
 message = client.messages.create(
     body="My name is Tuan!!!",
-    to="+17149305270",    # Replace with your phone number
-    from_="+17146811708") # Replace with your Twilio number
+    to="",    # Replace with your phone number
+    from_="") # Replace with your Twilio number
 print message.sid
 
 
