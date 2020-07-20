@@ -46,3 +46,21 @@ rescaled_stock = scaler_salary.fit_transform(ex_stok)
 
 print rescaled_salary
 print rescaled_stock
+
+#or in another way
+
+#or we can use
+
+maxval = max(data_dict.values(), key=lambda x : x['exercised_stock_options'] if x['exercised_stock_options'] !='NaN' else 0)
+print maxval['exercised_stock_options']
+minVal = min(data_dict.values(), key=lambda x: x['exercised_stock_options'])
+print minVal['exercised_stock_options']
+
+dstackData = numpy.dstack(data)
+finalArr = numpy.array(numpy.split(dstackData[0][1],len(dstackData[0][1])))
+scaler.fit_transform(finalArr)
+print scaler.transform([[200000]])
+finalArr = numpy.array(numpy.split(dstackData[0][2],len(dstackData[0][2])))
+scaler.fit_transform(finalArr)
+print scaler.transform([[1000000]])
+
